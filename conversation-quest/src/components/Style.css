@@ -1,8 +1,6 @@
 .task-item {
-  border: 1px solid #111;
-  border-radius: 10px;
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   /* justify-content: flex-end; */
 }
 .task-item-container {
@@ -19,10 +17,16 @@
 }
 
 .task-name {
-  flex-grow: 1;
+  flex-grow: 5;
 }
 .activation-button {
   border: 1px solid #777;
   border-radius: 10px;
   /* float: right; */
+}
+
+.small-div {
+  width: min-content;
+  /* width: min-content; 
+  height: min-content; */
 }

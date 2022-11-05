@@ -45,15 +45,20 @@ function TaskListItem({task, active, setActive, addTaskHistory}) {
         <Box className="task-name">
 		    <h2 >{task.title}</h2>   
         </Box>        
-		{/* <br/> */}
 
 		{active ?
-			<div>
-				<Button onClick={(ev)=>{setActive(false, task);addTaskHistory(task, "succeed", 0);ev.stopPropagation();}}>Mark as completed</Button>
-				<Button onClick={(ev)=>{setActive(false, task);addTaskHistory(task, "failed", 0);ev.stopPropagation();}}>Mark as failed</Button>
-			</div>
+			<Box className="small-div">
+				<Button 
+                    onClick={(ev)=>{setActive(false, task);addTaskHistory(task, "succeed", 0);ev.stopPropagation();}}
+                    >
+                    Completed
+                </Button>
+				<Button onClick={(ev)=>{setActive(false, task);addTaskHistory(task, "failed", 0);ev.stopPropagation();}}>
+                    Failed
+                </Button>
+			</Box>
 		:
-			<Button onClick={(ev)=>{setActive(true, task);ev.stopPropagation();}}>Activate</Button>
+			<Button className="activation-button" onClick={(ev)=>{setActive(true, task);ev.stopPropagation();}}>Activate</Button>
 		}
 			
     </ListItem>
