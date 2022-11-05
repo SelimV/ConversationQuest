@@ -54,16 +54,6 @@ function TaskListItem({task, active, setActive, addTaskHistory}) {
         <Box className="task-name">
 		    <h2 >{task.title}</h2>   
         </Box>        
-		{/* <br/> */}
-
-		{active ?
-			<div>
-				<Button onClick={(ev)=>{setActive(false, task);addTaskHistory(task, "succeed", 0);ev.stopPropagation();}}>Mark as completed</Button>
-				<Button onClick={(ev)=>{setActive(false, task);addTaskHistory(task, "failed", 0);ev.stopPropagation();}}>Mark as failed</Button>
-			</div>
-		:
-			<Button onClick={(ev)=>{setActive(true, task);ev.stopPropagation();}}>Activate</Button>
-		}
 		<Snackbar
         open={openSnack}
         autoHideDuration={1500}
@@ -71,7 +61,6 @@ function TaskListItem({task, active, setActive, addTaskHistory}) {
 		onClose={() => setOpenSnack(false)}
 			anchorOrigin={{horizontal: 'center', vertical: 'top'}}
 		  />
-			
     </ListItem>
 }
 export default TaskListItem;
