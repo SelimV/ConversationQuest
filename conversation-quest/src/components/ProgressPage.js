@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from '@mui/material/Button';
 import { List, ListItem } from "@mui/material";
 import { Box } from "@mui/system";
+import Streaks from "./Streaks";
 
 function AchievementItem({el, done, progress}){
 
