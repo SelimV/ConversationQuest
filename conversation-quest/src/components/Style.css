@@ -1,0 +1,13 @@
+.task-item {
+  border: 1px solid #111;
+  border-radius: 10px;
+}
+
+.achievement-item {
+  border: 1px solid #111;
+  border-radius: 10px;
+}
+
+.view {
+  background-color: #fff;
+}
