@@ -1,4 +1,4 @@
-import {ListItem } from "@mui/material";
+import {Card, ListItem } from "@mui/material";
 import React, { useState } from "react";
 import { AppBar, Stack, IconButton, Button, Dialog, DialogTitle, Snackbar, TextField} from '@mui/material';
 import './Style.css';
@@ -32,21 +32,33 @@ function TaskListItem({task, active, setActive, addTaskHistory}) {
 					</DialogTitle>
 				</Stack>
 			</AppBar>
-			<p>
-			{task.description}
-			Difficulty: 
-			{task.difficulty}
-			Time usage estimate:
-			{task.time}
-			</p>
+			
+			<Box sx={{ display: 'flex', justifyContent: 'space-around'}}>
+				<Box>
+				Difficulty: 
+				{task.difficulty}
+				</Box>		
+				<Box>
+				Time usage estimate:
+				{task.time}
+				</Box>
+			</Box>
+
+			<Card sx={{ 
+				padding: '1em',
+				margin: '1em 0'
+			 }}>
+				{task.description}
+			</Card>
+
+		
 			{active ?
 				<div>
-					<p>How did it go?</p>
 					<ReflectionSlider sliderValue={sliderValue} sliderValueChangeHandler={handleChange} />
 					<TextField
 						fullWidth
 					  id="filled-textarea"
-					  label="Self_reflection"
+					  label="Self-reflection"
 					  placeholder="Placeholder"
 					  multiline
 					  variant="filled"
