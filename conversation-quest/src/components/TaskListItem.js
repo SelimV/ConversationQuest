@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { AppBar, Stack, IconButton, Button, Dialog, DialogTitle } from '@mui/material';
 import './Style.css';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Box, Container } from "@mui/system";
 
 
 function TaskListItem({task, active, setActive}) {
@@ -28,12 +29,15 @@ function TaskListItem({task, active, setActive}) {
 			</p>
 		</Dialog>
 
-		<h2>{task.title}</h2>
-		<br/>
+        <Box className="task-name">
+		    <h2 >{task.title}</h2>   
+        </Box>        
+		{/* <br/> */}
+
 		{active ?
-			<Button onClick={(ev)=>{setActive(false);ev.stopPropagation();}}>Cancel</Button>
+			<Button  className="activation-button" onClick={(ev)=>{setActive(false);ev.stopPropagation();}}>Cancel</Button>
 		:
-			<Button onClick={(ev)=>{setActive(true);ev.stopPropagation();}}>Activate</Button>
+			<Button className="activation-button" onClick={(ev)=>{setActive(true);ev.stopPropagation();}}>Activate</Button>
 		}
 			
     </ListItem>
