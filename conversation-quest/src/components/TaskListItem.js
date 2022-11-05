@@ -1,14 +1,16 @@
 import {ListItem } from "@mui/material";
 import React, { useState } from "react";
-import { AppBar, Stack, IconButton, Button, Dialog, DialogTitle } from '@mui/material';
+import { AppBar, Stack, IconButton, Button, Dialog, DialogTitle, Snackbar, TextField} from '@mui/material';
 import './Style.css';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Box, Container } from "@mui/system";
 import ReflectionSlider from "./ReflectionSlider";
-import { Container } from "@mui/system";
 
 
 function TaskListItem({task, active, setActive, addTaskHistory}) {
-  const [opened, setOpened]=useState(false)
+  const [opened, setOpened]=useState(false);
+  const [openSnack, setOpenSnack]=useState(false);
+  const [reflection, setReflection]=useState("");
   const [sliderValue, setSliderValue] = React.useState(50);
   const handleChange = (event, newValue) => {
     setSliderValue(newValue);
@@ -37,22 +39,43 @@ function TaskListItem({task, active, setActive, addTaskHistory}) {
 			Time usage estimate:
 			{task.time}
 			</p>
-            <p>How did it go?</p>
-            <ReflectionSlider sliderValue={sliderValue} sliderValueChangeHandler={handleChange} />
+			{active ?
+				<div>
+					<p>How did it go?</p>
+					<ReflectionSlider sliderValue={sliderValue} sliderValueChangeHandler={handleChange} />
+					<TextField
+						fullWidth
+					  id="filled-textarea"
+					  label="Self_reflection"
+					  placeholder="Placeholder"
+					  multiline
+					  variant="filled"
+					  onChange={(ev)=>setReflection(ev.target.value)}
+					/>
+					<Button onClick={(ev)=>{setActive(false, task);addTaskHistory(task, "succeed", sliderValue, reflection);setOpenSnack(true);setOpened(false);ev.stopPropagation();}}>Mark as completed</Button>
+					<Button onClick={(ev)=>{setActive(false, task);addTaskHistory(task, "failed", sliderValue, reflection);setOpenSnack(true);setOpened(false);ev.stopPropagation();}}>Mark as failed</Button>
+				</div>
+			:
+				<Button onClick={(ev)=>{setActive(true, task);ev.stopPropagation();}}>Activate</Button>
+			}
             </Container>
 		</Dialog>
 
-		<h2>{task.title}</h2>
-		<br/>
-		{active ?
-			<div>
-				<Button onClick={(ev)=>{setActive(false, task);addTaskHistory(task, "succeed", 0);ev.stopPropagation();}}>Mark as completed</Button>
-				<Button onClick={(ev)=>{setActive(false, task);addTaskHistory(task, "failed", 0);ev.stopPropagation();}}>Mark as failed</Button>
-			</div>
-		:
-			<Button onClick={(ev)=>{setActive(true, task);ev.stopPropagation();}}>Activate</Button>
+        <Box className="task-name">
+		    <h2 >{task.title}</h2>   
+        </Box>        
+
+	 	{ !active &&
+			<Button className="activation-button" onClick={(ev)=>{setActive(true, task);ev.stopPropagation();}}>Activate</Button>
 		}
 			
+		<Snackbar
+        open={openSnack}
+        autoHideDuration={1500}
+        message="Task state saved"
+		onClose={() => setOpenSnack(false)}
+			anchorOrigin={{horizontal: 'center', vertical: 'top'}}
+		  />
     </ListItem>
 }
 export default TaskListItem;
