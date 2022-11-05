@@ -1,10 +1,10 @@
 import {ListItem } from "@mui/material";
 import React, { useState } from "react";
 import { AppBar, Stack, IconButton, Button, Dialog, DialogTitle } from '@mui/material';
+import './Style.css';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ReflectionSlider from "./ReflectionSlider";
 import { Container } from "@mui/system";
-
 
 
 function TaskListItem({task, active, setActive}) {
@@ -17,7 +17,7 @@ function TaskListItem({task, active, setActive}) {
 		setOpened(false);
 		ev.stopPropagation() // !!!
 	}
-	return <ListItem button={true} onClick={() => setOpened(true)}>
+	return <ListItem className="task-item" button={true} onClick={() => setOpened(true)}>
 		<Dialog open={opened} fullScreen={true}>
             <Container maxWidth='sm'>
 			<AppBar sx={{position: 'relative'}}>
