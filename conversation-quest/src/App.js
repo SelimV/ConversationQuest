@@ -52,7 +52,7 @@ function App(){
 	return <Container 
   style={{display: "flex",
   "flex-direction": "column",
-  height: "100vh"
+  height: "100%"
 }}
   maxWidth='sm'>
     <Box flex={1}>
