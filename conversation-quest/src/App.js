@@ -32,8 +32,8 @@ function App(){
 	// taskHistory: [{task, date, result, score}]
 	const [taskHistory, setTaskHistory]=useState(JSON.parse(localStorage.getItem("taskHistory") ?? "[]"))
 
-	const addTaskHistory = (task, result, score) => {
-		setTaskHistory([...taskHistory, {task: task, date: Date.now(), result: result, score: score}]);
+	const addTaskHistory = (task, result, score, reflection) => {
+		setTaskHistory([...taskHistory, {task: task, date: Date.now(), result: result, score: score, reflection: reflection}]);
 	};
 
 	useEffect(() => {

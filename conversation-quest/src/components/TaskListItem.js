@@ -1,6 +1,6 @@
 import {ListItem } from "@mui/material";
 import React, { useState } from "react";
-import { AppBar, Stack, IconButton, Button, Dialog, DialogTitle, Snackbar} from '@mui/material';
+import { AppBar, Stack, IconButton, Button, Dialog, DialogTitle, Snackbar, TextField} from '@mui/material';
 import './Style.css';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Box, Container } from "@mui/system";
@@ -10,6 +10,7 @@ import ReflectionSlider from "./ReflectionSlider";
 function TaskListItem({task, active, setActive, addTaskHistory}) {
   const [opened, setOpened]=useState(false);
   const [openSnack, setOpenSnack]=useState(false);
+  const [reflection, setReflection]=useState("");
   const [sliderValue, setSliderValue] = React.useState(50);
   const handleChange = (event, newValue) => {
     setSliderValue(newValue);
@@ -42,8 +43,17 @@ function TaskListItem({task, active, setActive, addTaskHistory}) {
 				<div>
 					<p>How did it go?</p>
 					<ReflectionSlider sliderValue={sliderValue} sliderValueChangeHandler={handleChange} />
-					<Button onClick={(ev)=>{setActive(false, task);addTaskHistory(task, "succeed", sliderValue);setOpenSnack(true);setOpened(false);ev.stopPropagation();}}>Mark as completed</Button>
-					<Button onClick={(ev)=>{setActive(false, task);addTaskHistory(task, "failed", sliderValue);setOpenSnack(true);setOpened(false);ev.stopPropagation();}}>Mark as failed</Button>
+					<TextField
+						fullWidth
+					  id="filled-textarea"
+					  label="Self_reflection"
+					  placeholder="Placeholder"
+					  multiline
+					  variant="filled"
+					  onChange={(ev)=>setReflection(ev.target.value)}
+					/>
+					<Button onClick={(ev)=>{setActive(false, task);addTaskHistory(task, "succeed", sliderValue, reflection);setOpenSnack(true);setOpened(false);ev.stopPropagation();}}>Mark as completed</Button>
+					<Button onClick={(ev)=>{setActive(false, task);addTaskHistory(task, "failed", sliderValue, reflection);setOpenSnack(true);setOpened(false);ev.stopPropagation();}}>Mark as failed</Button>
 				</div>
 			:
 				<Button onClick={(ev)=>{setActive(true, task);ev.stopPropagation();}}>Activate</Button>
