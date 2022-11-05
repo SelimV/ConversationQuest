@@ -5,6 +5,8 @@ import MorePage from "./components/MorePage";
 import ProgressPage from "./components/ProgressPage";
 import NavBar from "./components/Navigation";
 import Button from '@mui/material/Button';
+import { Box, Container } from "@mui/system";
+import Grid from '@mui/material/Grid';
 
 function GetPage(page) {
 	 switch(page){
@@ -18,9 +20,17 @@ function GetPage(page) {
 function App(){
   const [page, setPage]=useState("TaskList") //pges: "landing", "login", ...
   
-	return <>
+	return <Container 
+  style={{display: "flex",
+  "flex-direction": "column",
+  height: "100vh"
+}}
+  maxWidth='sm'>
+    <Box flex={1}>
 		{GetPage(page)}
-		<NavBar setPage={setPage} initialPage={page} />;
-	</>;
+    </Box>
+		<NavBar setPage={setPage} initialPage={page} />
+    </Container>
+    ;
 }
 export default App;
