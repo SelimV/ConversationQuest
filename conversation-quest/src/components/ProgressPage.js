@@ -28,6 +28,27 @@ function HistoryItem({el}){
 	)
 }
 
+function Streaks({taskHistory}) {
+	return <>
+		<h2>Streaks</h2>
+			<Box sx={{ display: 'flex', justifyContent: 'space-evenly'}}>
+				<Box>
+					<h3 style={{textAlign: 'center'}}>{taskHistory.length}</h3>
+					Total tasks done
+				</Box>
+				<Box>
+					<h3 style={{textAlign: 'center'}}>{taskHistory.filter(el=>el.result=='succeed').length}</h3>
+					<p>succeeded </p> 
+				</Box>
+				<Box> 
+					<h3 style={{textAlign: 'center'}}>{taskHistory.filter(el=>el.result=='failed').length}</h3>
+					<p>failed</p>
+				</Box>
+			</Box>
+			 
+	</>
+}
+
 function ProgressPage({taskHistory}){
 	const achievements = [
 		...[1,5,25,50,100].map(num => {return {
@@ -41,9 +62,7 @@ function ProgressPage({taskHistory}){
 	];
 	return (<>
 	<p>Progress page</p>
-	<h2>Streaks</h2>
-		Total tasks done: {taskHistory.length}, succeed: {taskHistory.filter(el=>el.result=='succeed').length}, failed: {taskHistory.filter(el=>el.result=='failed').length}
-	<div>streak näkymä</div>
+	<Streaks taskHistory={taskHistory}/>
 	<h2>Achievements</h2>
 	<List>
 		{achievements.map((el)=> <AchievementItem el={el} done={el.check(taskHistory).done} progress={el.check(taskHistory).progress*100} />)}
