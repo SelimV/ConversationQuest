@@ -9,9 +9,13 @@ function TaskListPage() {
     completed: false
   }
   ])
-  
-  return <Container>
-    <TaskList tasks={tasks}/>
-  </Container>;
+
+  return <>
+    <div>All/Active selector</div>
+    <div>Filter paneli</div>
+    <Container>
+      <TaskList tasks={tasks} />
+    </Container>
+  </>;
 }
 export default TaskListPage;

@@ -3,6 +3,7 @@ import SingleTaskPage from "./components/SingleTaskPage";
 import TaskListPage from "./components/TaskListPage";
 import MorePage from "./components/MorePage";
 import ProgressPage from "./components/ProgressPage";
+import NavBar from "./components/Navigation";
 import Button from '@mui/material/Button';
 
 function GetPage(page) {
@@ -19,11 +20,7 @@ function App(){
   
 	return <>
 		{GetPage(page)}
-		<div>Tähän tulee navbar
-			<Button onClick={() => setPage("TaskList")}>tasklist</Button>
-			<Button onClick={() => setPage("Progress")}>progress</Button>
-			<Button onClick={() => setPage("More")}>more</Button>
-		</div>
+		<NavBar setPage={setPage} initialPage={page} />;
 	</>;
 }
 export default App;
