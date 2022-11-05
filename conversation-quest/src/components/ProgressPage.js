@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from '@mui/material/Button';
+import Streaks from "./Streaks";
 
 function ProgressPage({taskHistory}){
 	const achievements = [
@@ -14,7 +15,7 @@ function ProgressPage({taskHistory}){
 	];
 	return (<>
 	<p>Progress page</p>
-	<h2>Streaks</h2>
+	<Streaks/>
 		Total tasks done: {taskHistory.length}, succeed: {taskHistory.filter(el=>el.result=='succeed').length}, failed: {taskHistory.filter(el=>el.result=='failed').length}
 	<div>streak näkymä</div>
 	<h2>Achievements</h2>
