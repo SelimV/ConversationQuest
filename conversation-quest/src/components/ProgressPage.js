@@ -3,9 +3,7 @@ import Button from '@mui/material/Button';
 
 function ProgressPage({moveToLogin, x}){
     return <>
-    <p>landing page</p>
-    <p>landing page {x}</p>
-    <Button onClick={moveToLogin}>Start</Button>
+	<p>Progress page</p>
   </>;
 }
 export default ProgressPage;
