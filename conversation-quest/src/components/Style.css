@@ -1,6 +1,12 @@
 .task-item {
   border: 1px solid #111;
   border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: flex-end; */
+}
+.task-item-container {
+  flex-direction: column;
 }
 
 .achievement-item {
@@ -10,4 +16,13 @@
 
 .view {
   background-color: #fff;
+}
+
+.task-name {
+  flex-grow: 1;
+}
+.activation-button {
+  border: 1px solid #777;
+  border-radius: 10px;
+  /* float: right; */
 }

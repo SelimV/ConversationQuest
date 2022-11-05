@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { AppBar, Stack, IconButton, Button, Dialog, DialogTitle, Snackbar} from '@mui/material';
 import './Style.css';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Box, Container } from "@mui/system";
 import ReflectionSlider from "./ReflectionSlider";
-import { Container } from "@mui/system";
 
 
 function TaskListItem({task, active, setActive, addTaskHistory}) {
@@ -51,6 +51,19 @@ function TaskListItem({task, active, setActive, addTaskHistory}) {
             </Container>
 		</Dialog>
 
+        <Box className="task-name">
+		    <h2 >{task.title}</h2>   
+        </Box>        
+		{/* <br/> */}
+
+		{active ?
+			<div>
+				<Button onClick={(ev)=>{setActive(false, task);addTaskHistory(task, "succeed", 0);ev.stopPropagation();}}>Mark as completed</Button>
+				<Button onClick={(ev)=>{setActive(false, task);addTaskHistory(task, "failed", 0);ev.stopPropagation();}}>Mark as failed</Button>
+			</div>
+		:
+			<Button onClick={(ev)=>{setActive(true, task);ev.stopPropagation();}}>Activate</Button>
+		}
 		<Snackbar
         open={openSnack}
         autoHideDuration={1500}
@@ -58,10 +71,6 @@ function TaskListItem({task, active, setActive, addTaskHistory}) {
 		onClose={() => setOpenSnack(false)}
 			anchorOrigin={{horizontal: 'center', vertical: 'top'}}
 		  />
-
-
-		<h2>{task.title}</h2>
-		<br/>
 			
     </ListItem>
 }
