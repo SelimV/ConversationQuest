@@ -20,12 +20,7 @@ function App(){
   
 	return <>
 		{GetPage(page)}
-		<div>Tähän tulee navbar
-      <NavBar moveToLogin={()=>setPage("login")} x="lol" />;
-			<Button onClick={() => setPage("TaskList")}>tasklist</Button>
-			<Button onClick={() => setPage("Progress")}>progress</Button>
-			<Button onClick={() => setPage("More")}>more</Button>
-		</div>
+		<NavBar setPage={setPage} initialPage={page} />;
 	</>;
 }
 export default App;
