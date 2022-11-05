@@ -2,8 +2,8 @@
 	{
 		"id": 1,
 		"type": "normal",
-		"title": "name of the task",
-		"description": "describe in more detail",
+		"title": "Talk to the clerk in a store",
+		"description": "description",
 		"difficulty": 1,
 		"time": 1,
 		"nextTasks": [2]
@@ -11,10 +11,19 @@
 	{
 		"id": 2,
 		"type": "normal",
-		"title": "name of the task 2",
-		"description": "describe in more detail",
-		"difficulty": 3,
+		"title": "Talk about x with another student",
+		"description": "description",
+		"difficulty": 2,
 		"time": 15,
+		"nextTasks": []
+	},
+	{
+		"id": 3,
+		"type": "normal",
+		"title": "Say thank you to somebody",
+		"description": "choose the situation yourself, hints such as a bus driver",
+		"difficulty": 3,
+		"time": 1,
 		"nextTasks": []
 	}
 ]

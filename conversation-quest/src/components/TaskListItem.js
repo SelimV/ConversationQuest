@@ -5,7 +5,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 
-function TaskListItem({task, active, setActive}) {
+function TaskListItem({task, active, setActive, addTaskHistory}) {
   const [opened, setOpened]=useState(false)
 	const test = (ev) => {
 		setOpened(false);
@@ -25,15 +25,22 @@ function TaskListItem({task, active, setActive}) {
 			</AppBar>
 			<p>
 			{task.description}
+			Difficulty: 
+			{task.difficulty}
+			Time usage estimate:
+			{task.time}
 			</p>
 		</Dialog>
 
 		<h2>{task.title}</h2>
 		<br/>
 		{active ?
-			<Button onClick={(ev)=>{setActive(false);ev.stopPropagation();}}>Cancel</Button>
+			<div>
+				<Button onClick={(ev)=>{setActive(false, task);addTaskHistory(task, "succeed", 0);ev.stopPropagation();}}>Mark as completed</Button>
+				<Button onClick={(ev)=>{setActive(false, task);addTaskHistory(task, "failed", 0);ev.stopPropagation();}}>Mark as failed</Button>
+			</div>
 		:
-			<Button onClick={(ev)=>{setActive(true);ev.stopPropagation();}}>Activate</Button>
+			<Button onClick={(ev)=>{setActive(true, task);ev.stopPropagation();}}>Activate</Button>
 		}
 			
     </ListItem>
