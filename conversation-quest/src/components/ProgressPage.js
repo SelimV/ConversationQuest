@@ -29,7 +29,7 @@ function HistoryItem({el}){
 	)
 }
 
-function Streaks({taskHistory}) {
+function ProgressStats({taskHistory}) {
 	return <>
 		<h2>Streaks</h2>
 			<Box sx={{ display: 'flex', justifyContent: 'space-evenly'}}>
@@ -63,7 +63,8 @@ function ProgressPage({taskHistory}){
 	];
 	return (<>
 	<p>Progress page</p>
-	<Streaks taskHistory={taskHistory}/>
+	<ProgressStats taskHistory={taskHistory}/>
+	<Streaks/>
 	<h2>Achievements</h2>
 	<List>
 		{achievements.map((el)=> <AchievementItem el={el} done={el.check(taskHistory).done} progress={el.check(taskHistory).progress*100} />)}
