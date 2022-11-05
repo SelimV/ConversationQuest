@@ -9,19 +9,13 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
 
-function TaskListPage() {
-  const [activeTasks, setActiveTasks]=useState(JSON.parse(localStorage.getItem("activeTasks") ?? "[]")) //pges: "landing", "login", ...
-	useEffect(() => {
-		localStorage.setItem("activeTasks", JSON.stringify(activeTasks))
-	});
-
+function TaskListPage({activeTasks, setActive, addTaskHistory}) {
 
   const [value, setValue] = React.useState('1');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={value}>
@@ -32,10 +26,10 @@ function TaskListPage() {
           </TabList>
         </Box>
         <TabPanel value="1">
-		  <TaskList tasks={Tasks} activeTasks={activeTasks} setActiveTasks={setActiveTasks} />
+		  <TaskList tasks={Tasks} addTaskHistory={addTaskHistory} activeTasks={activeTasks} setActive={setActive} />
 		</TabPanel>
         <TabPanel value="2">
-			<TaskList tasks={Tasks.filter(task=>activeTasks.includes(task.id))} activeTasks={activeTasks} setActiveTasks={setActiveTasks} />
+			<TaskList tasks={Tasks.filter(task=>activeTasks.some(el => el.id == task.id))} addTaskHistory={addTaskHistory} activeTasks={activeTasks} setActive={setActive} />
 		</TabPanel>
       </TabContext>
     </Box>

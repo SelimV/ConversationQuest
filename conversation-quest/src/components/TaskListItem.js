@@ -4,16 +4,22 @@ import { AppBar, Stack, IconButton, Button, Dialog, DialogTitle } from '@mui/mat
 import './Style.css';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Box, Container } from "@mui/system";
+import ReflectionSlider from "./ReflectionSlider";
 
 
-function TaskListItem({task, active, setActive}) {
+function TaskListItem({task, active, setActive, addTaskHistory}) {
   const [opened, setOpened]=useState(false)
+  const [sliderValue, setSliderValue] = React.useState(50);
+  const handleChange = (event, newValue) => {
+    setSliderValue(newValue);
+  };
 	const test = (ev) => {
 		setOpened(false);
 		ev.stopPropagation() // !!!
 	}
 	return <ListItem className="task-item" button={true} onClick={() => setOpened(true)}>
 		<Dialog open={opened} fullScreen={true}>
+            <Container maxWidth='sm'>
 			<AppBar sx={{position: 'relative'}}>
 				<Stack direction="row" spacing={1}>
 					<IconButton onClick={test}>
@@ -26,7 +32,14 @@ function TaskListItem({task, active, setActive}) {
 			</AppBar>
 			<p>
 			{task.description}
+			Difficulty: 
+			{task.difficulty}
+			Time usage estimate:
+			{task.time}
 			</p>
+            <p>How did it go?</p>
+            <ReflectionSlider sliderValue={sliderValue} sliderValueChangeHandler={handleChange} />
+            </Container>
 		</Dialog>
 
         <Box className="task-name">
@@ -35,9 +48,12 @@ function TaskListItem({task, active, setActive}) {
 		{/* <br/> */}
 
 		{active ?
-			<Button  className="activation-button" onClick={(ev)=>{setActive(false);ev.stopPropagation();}}>Cancel</Button>
+			<div>
+				<Button onClick={(ev)=>{setActive(false, task);addTaskHistory(task, "succeed", 0);ev.stopPropagation();}}>Mark as completed</Button>
+				<Button onClick={(ev)=>{setActive(false, task);addTaskHistory(task, "failed", 0);ev.stopPropagation();}}>Mark as failed</Button>
+			</div>
 		:
-			<Button className="activation-button" onClick={(ev)=>{setActive(true);ev.stopPropagation();}}>Activate</Button>
+			<Button onClick={(ev)=>{setActive(true, task);ev.stopPropagation();}}>Activate</Button>
 		}
 			
     </ListItem>
