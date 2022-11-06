@@ -1,11 +1,11 @@
-import {ListItem } from "@mui/material";
+import {Card, ListItem } from "@mui/material";
 import React, { useState } from "react";
 import { AppBar, Stack, IconButton, Button, Dialog, DialogTitle, Snackbar, TextField} from '@mui/material';
 import './Style.css';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Box, Container } from "@mui/system";
 import ReflectionSlider from "./ReflectionSlider";
-
+import StarRoundedIcon from '@mui/icons-material/StarRounded';
 
 function TaskListItem({task, active, setActive, addTaskHistory}) {
   const [opened, setOpened]=useState(false);
@@ -32,21 +32,41 @@ function TaskListItem({task, active, setActive, addTaskHistory}) {
 					</DialogTitle>
 				</Stack>
 			</AppBar>
-			<p>
-			{task.description}
-			Difficulty: 
-			{task.difficulty}
-			Time usage estimate:
-			{task.time}
-			</p>
+			
+			<Box sx={{ 
+					display: 'flex', 
+					justifyContent: 'space-around',
+					margin: '1em 0',
+					lineHeight: '2'
+				}}>
+				<Box>
+				Difficulty: {[...Array(task.difficulty).keys()]
+					.map(_ => <StarRoundedIcon sx={{
+						verticalAlign: '-10%',
+						color: 'rgba(0,0,0, 0.6)'
+					}} />
+				)}
+				</Box>		
+				<Box>
+				Time usage estimate: {task.time}
+				</Box>
+			</Box>
+
+			<Card sx={{ 
+				padding: '1em',
+				margin: '1em 0'
+			 }}>
+				{task.description}
+			</Card>
+
+		
 			{active ?
 				<div>
-					<p>How did it go?</p>
 					<ReflectionSlider sliderValue={sliderValue} sliderValueChangeHandler={handleChange} />
 					<TextField
 						fullWidth
 					  id="filled-textarea"
-					  label="Self_reflection"
+					  label="Self-reflection"
 					  placeholder="Placeholder"
 					  multiline
 					  variant="filled"
