@@ -1,5 +1,6 @@
 .task-item {
   display: flex;
+  align-items: center;
   /* flex-direction: row; */
   /* justify-content: flex-end; */
 }

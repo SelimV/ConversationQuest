@@ -11,18 +11,21 @@ function AchievementItem({el, done, progress}){
 
 	return (<>
 		<ListItem className="task-item" button={true}>
-		  <h3 className="task-name">{el.description}</h3> 
+		  <h3 className="task-name" style={{
+				margin: 0
+			}}>{el.description}</h3> 
 			<Box>{done ?  
-				<p>
-					<VerifiedRoundedIcon fontSize="large" sx={{
-						color: "green",
-						// paddingRight: '5px'
-					}} 
-					/> 
-				</p>
+				<Box sx={{
+					lineHeight: '0'
+				}}> <VerifiedRoundedIcon fontSize="large" sx={{
+					color: "green",
+					// paddingRight: '5px'
+				}} 
+				/> </Box>
 				:
 				<Box sx={{
-					position: 'relative'
+					position: 'relative',
+					lineHeight: 0,
 				}}>
 					<CircularProgress 
 						variant="determinate" 
@@ -51,10 +54,12 @@ function HistoryItem({el}){
 
 	return (<>
 		<ListItem className="task-item" button={true}>
-		  <h3 className="task-name">{el.task.title}</h3> 
+		  <h3 className="task-name" style={{
+				margin: 0,
+			}}>{el.task.title}</h3> 
 			<Box>
-			<p>Result: {el.result == "succeed" ? "success" : el.result}</p>
-			<p>{new Date(el.date).toLocaleString()} </p>
+			<p style={{margin: 0}}>Result: {el.result == "succeed" ? "success" : el.result}</p>
+			<p style={{margin: 0}}>{new Date(el.date).toLocaleString()} </p>
 			</Box>
 		</ListItem>
 	</>
