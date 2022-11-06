@@ -6,6 +6,7 @@ import Streaks from "./Streaks";
 import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import CircularProgress from '@mui/material/CircularProgress';
+// import strftime from 'strftime';
 
 function AchievementItem({el, done, progress}){
 
@@ -49,6 +50,9 @@ function AchievementItem({el, done, progress}){
 	</>)
 }
 
+function getTimeString(date){
+	return `${date.getDate()}.${date.getMonth()+1}. ${date.getHours()}:${date.getMinutes()}`
+}
 
 function HistoryItem({el}){
 
@@ -59,7 +63,7 @@ function HistoryItem({el}){
 			}}>{el.task.title}</h3> 
 			<Box>
 			<p style={{margin: 0}}>Result: {el.result == "succeed" ? "success" : el.result}</p>
-			<p style={{margin: 0}}>{new Date(el.date).toLocaleString()} </p>
+			<p style={{margin: 0}}>{getTimeString(new Date(el.date))} </p>
 			</Box>
 		</ListItem>
 	</>
