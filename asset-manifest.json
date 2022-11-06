@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/ConversationQuest/static/css/main.41ca80be.css",
-    "main.js": "/ConversationQuest/static/js/main.a9a2ff1f.js",
+    "main.js": "/ConversationQuest/static/js/main.a331ba9c.js",
     "static/js/787.6530ab9b.chunk.js": "/ConversationQuest/static/js/787.6530ab9b.chunk.js",
     "index.html": "/ConversationQuest/index.html",
     "main.41ca80be.css.map": "/ConversationQuest/static/css/main.41ca80be.css.map",
-    "main.a9a2ff1f.js.map": "/ConversationQuest/static/js/main.a9a2ff1f.js.map",
+    "main.a331ba9c.js.map": "/ConversationQuest/static/js/main.a331ba9c.js.map",
     "787.6530ab9b.chunk.js.map": "/ConversationQuest/static/js/787.6530ab9b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.41ca80be.css",
-    "static/js/main.a9a2ff1f.js"
+    "static/js/main.a331ba9c.js"
   ]
 }
