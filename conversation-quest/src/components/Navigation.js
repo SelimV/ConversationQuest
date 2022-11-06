@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import BottomNavigation from '@mui/material/BottomNavigation';
 import { BottomNavigationAction, Paper } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import LeaderboardIcon from '@mui/icons-material/Leaderboard';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import InfoIcon from '@mui/icons-material/Info';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Button from "@mui/material/Button";
 
 function NavBar({setPage, initialPage}){
@@ -20,9 +24,9 @@ function NavBar({setPage, initialPage}){
         setPage(newValue)
         }}
       >
-        <BottomNavigationAction value="TaskList" label="tasklist" icon={<FavoriteIcon />} />
-        <BottomNavigationAction value="Progress" label="progress" icon={<FavoriteIcon/>} />
-        <BottomNavigationAction value="More" label="more" icon={<FavoriteIcon />} />
+        <BottomNavigationAction value="TaskList" label="tasklist" icon={<ListAltIcon />} />
+        <BottomNavigationAction value="Progress" label="progress" icon={<LeaderboardIcon/>} />
+        <BottomNavigationAction value="More" label="more" icon={<MoreHorizIcon />} />
       </BottomNavigation> 
     </Paper>
   
