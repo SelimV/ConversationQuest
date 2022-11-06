@@ -3,13 +3,45 @@ import Button from '@mui/material/Button';
 import { Container, List, ListItem } from "@mui/material";
 import { Box } from "@mui/system";
 import Streaks from "./Streaks";
+import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
+import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function AchievementItem({el, done, progress}){
 
 	return (<>
 		<ListItem className="task-item" button={true}>
 		  <h3 className="task-name">{el.description}</h3> 
-			<p>Status: {done ? "Done" : `${progress}%`}</p>
+			<Box>{done ?  
+				<p>
+					<VerifiedRoundedIcon fontSize="large" sx={{
+						color: "green",
+						// paddingRight: '5px'
+					}} 
+					/> 
+				</p>
+				:
+				<Box sx={{
+					position: 'relative'
+				}}>
+					<CircularProgress 
+						variant="determinate" 
+						style={{ color: '#d3cf28'}}
+						size={35} 
+						thickness={10} 
+						value={progress} 
+					/> 
+					<p style={{
+						position: 'absolute',
+						top: 'calc(50% - 0.5em)',
+						lineHeight: '100%',
+						margin: '0',
+						width: '100%',
+						textAlign: 'center'
+					}}>{`${progress}%`}</p>
+				</Box>
+			}
+			</Box>
 		</ListItem>
 	</>)
 }
