@@ -56,9 +56,10 @@ function App() {
 			height: "100%"
 		}}
 		maxWidth='sm'>
-		<Box flex={1}>
+		<Box flex={1} overflow="auto">
 			{GetPage(page)}
 		</Box>
+		<Box height={56}/>
 		<NavBar setPage={setPage} initialPage={page} />
 	</Container>;
 }
