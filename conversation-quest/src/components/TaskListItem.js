@@ -21,7 +21,7 @@ function TaskListItem({task, active, setActive, addTaskHistory}) {
 	}
 	return <ListItem className="task-item" button={true} onClick={() => setOpened(true)}>
 		<Dialog open={opened} fullScreen={true}>
-            <Container maxWidth='sm'>
+            <Container maxWidth='sm' disableGutters>
 			<AppBar sx={{position: 'relative'}}>
 				<Stack direction="row" spacing={1}>
 					<IconButton onClick={test}>

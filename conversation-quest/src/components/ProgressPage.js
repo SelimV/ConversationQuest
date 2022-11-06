@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from '@mui/material/Button';
-import { List, ListItem } from "@mui/material";
+import { Container, List, ListItem } from "@mui/material";
 import { Box } from "@mui/system";
 import Streaks from "./Streaks";
 
@@ -31,7 +31,6 @@ function HistoryItem({el}){
 
 function ProgressStats({taskHistory}) {
 	return <>
-		<h2>Streaks</h2>
 			<Box sx={{ display: 'flex', justifyContent: 'space-evenly'}}>
 				<Box>
 					<h3 style={{textAlign: 'center'}}>{taskHistory.length}</h3>
@@ -61,10 +60,10 @@ function ProgressPage({taskHistory}){
 		}})
 	,
 	];
-	return (<>
-	<p>Progress page</p>
+	return (<Container>
+	<h2>Progress</h2>
 	<ProgressStats taskHistory={taskHistory}/>
-	<Streaks/>
+	<Streaks taskHistory={taskHistory}/>
 	<h2>Achievements</h2>
 	<List>
 		{achievements.map((el)=> <AchievementItem el={el} done={el.check(taskHistory).done} progress={el.check(taskHistory).progress*100} />)}
@@ -73,6 +72,6 @@ function ProgressPage({taskHistory}){
 	<List>
 		{taskHistory.map(el => <HistoryItem  el={el}/>)}
 	</List>
-	</>);
+	</Container>);
 }
 export default ProgressPage;

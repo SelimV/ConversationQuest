@@ -11,18 +11,18 @@ import Grid from '@mui/material/Grid';
 
 
 
-function App(){
-  const [page, setPage]=useState("TaskList") //pges: "landing", "login", ...
+function App() {
+	const [page, setPage] = useState("TaskList") //pges: "landing", "login", ...
 
 
 	// Task states
 	// activeTasks: [{date, id}]
-	const [activeTasks, setActiveTasks]=useState(JSON.parse(localStorage.getItem("activeTasks") ?? "[]"))
+	const [activeTasks, setActiveTasks] = useState(JSON.parse(localStorage.getItem("activeTasks") ?? "[]"))
 
 	const setTaskActive = (active, task) => {
-		if(active) {
-			if(!activeTasks.some(el => el.id == task.id))
-				setActiveTasks([...activeTasks,{id: task.id, date: Date.now()}])
+		if (active) {
+			if (!activeTasks.some(el => el.id == task.id))
+				setActiveTasks([...activeTasks, { id: task.id, date: Date.now() }])
 		} else {
 			setActiveTasks(activeTasks.filter(el => el.id != task.id))
 		}
@@ -30,36 +30,36 @@ function App(){
 
 	// Task states
 	// taskHistory: [{task, date, result, score}]
-	const [taskHistory, setTaskHistory]=useState(JSON.parse(localStorage.getItem("taskHistory") ?? "[]"))
+	const [taskHistory, setTaskHistory] = useState(JSON.parse(localStorage.getItem("taskHistory") ?? "[]"))
 
 	const addTaskHistory = (task, result, score, reflection) => {
-		setTaskHistory([...taskHistory, {task: task, date: Date.now(), result: result, score: score, reflection: reflection}]);
+		setTaskHistory([...taskHistory, { task: task, date: Date.now(), result: result, score: score, reflection: reflection }]);
 	};
 
 	useEffect(() => {
 		localStorage.setItem("taskHistory", JSON.stringify(taskHistory))
 		localStorage.setItem("activeTasks", JSON.stringify(activeTasks))
 	});
-  
+
 	const GetPage = (page) => {
-		 switch(page){
-			case "TaskList": return <TaskListPage activeTasks={activeTasks} addTaskHistory={addTaskHistory} setActive={setTaskActive}/>;
+		switch (page) {
+			case "TaskList": return <TaskListPage activeTasks={activeTasks} addTaskHistory={addTaskHistory} setActive={setTaskActive} />;
 			case "More": return <MorePage />;
 			case "Progress": return <ProgressPage taskHistory={taskHistory} />;
-			default:  <p>Stop hacking!</p>;
-		 }
+			default: <p>Stop hacking!</p>;
+		}
 	}
-	return <Container 
-  style={{display: "flex",
-  "flex-direction": "column",
-  height: "100%"
-}}
-  maxWidth='sm'>
-    <Box flex={1}>
-		{GetPage(page)}
-    </Box>
+	return <Container disableGutters
+		style={{
+			display: "flex",
+			"flex-direction": "column",
+			height: "100%"
+		}}
+		maxWidth='sm'>
+		<Box flex={1}>
+			{GetPage(page)}
+		</Box>
 		<NavBar setPage={setPage} initialPage={page} />
-    </Container>
-    ;
+	</Container>;
 }
 export default App;
