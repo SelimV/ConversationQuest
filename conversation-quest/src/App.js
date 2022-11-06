@@ -7,6 +7,8 @@ import NavBar from "./components/Navigation";
 import Button from '@mui/material/Button';
 import { Box, Container } from "@mui/system";
 import Grid from '@mui/material/Grid';
+import history from "./json/demoHistory.json";
+
 
 
 
@@ -30,7 +32,7 @@ function App() {
 
 	// Task states
 	// taskHistory: [{task, date, result, score}]
-	const [taskHistory, setTaskHistory] = useState(JSON.parse(localStorage.getItem("taskHistory") ?? "[]"))
+	const [taskHistory, setTaskHistory] = useState(JSON.parse(localStorage.getItem("taskHistory") ?? JSON.stringify(history)))
 
 	const addTaskHistory = (task, result, score, reflection) => {
 		setTaskHistory([...taskHistory, { task: task, date: Date.now(), result: result, score: score, reflection: reflection }]);
