@@ -5,7 +5,7 @@ import './Style.css';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Box, Container } from "@mui/system";
 import ReflectionSlider from "./ReflectionSlider";
-
+import StarRoundedIcon from '@mui/icons-material/StarRounded';
 
 function TaskListItem({task, active, setActive, addTaskHistory}) {
   const [opened, setOpened]=useState(false);
@@ -33,14 +33,22 @@ function TaskListItem({task, active, setActive, addTaskHistory}) {
 				</Stack>
 			</AppBar>
 			
-			<Box sx={{ display: 'flex', justifyContent: 'space-around'}}>
+			<Box sx={{ 
+					display: 'flex', 
+					justifyContent: 'space-around',
+					margin: '1em 0',
+					lineHeight: '2'
+				}}>
 				<Box>
-				Difficulty: 
-				{task.difficulty}
+				Difficulty: {[...Array(task.difficulty).keys()]
+					.map(_ => <StarRoundedIcon sx={{
+						verticalAlign: '-10%',
+						color: 'rgba(0,0,0, 0.6)'
+					}} />
+				)}
 				</Box>		
 				<Box>
-				Time usage estimate:
-				{task.time}
+				Time usage estimate: {task.time}
 				</Box>
 			</Box>
 
