@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import { Box, Container, Slider, Typography } from "@mui/material";
-import SentimentVeryDissatisfied from "@mui/icons-material/SentimentVeryDissatisfied";
-import SentimentNeutral from "@mui/icons-material/SentimentNeutral";
+import React from "react";
+import { Box, Container } from "@mui/material";
 import SentimentVerySatisfied from '@mui/icons-material/SentimentVerySatisfied';
 import CircularProgress from '@mui/material/CircularProgress';
 import Circle from '@mui/icons-material/Circle';
@@ -9,9 +7,10 @@ import Circle from '@mui/icons-material/Circle';
 
 function StreakIndicator({ score, current }) {
     const style = { color: current ? "red" : "black" };
+    const dotStyle = { color: current ? "red" : "lightGrey" };
     return <Box height={40} width={40} display="flex" alignItems="center" justifyContent="center">
         {score === 0 ?
-        <Circle fontSize="small" style={style} /> :
+        <Circle fontSize="small" style={dotStyle} /> :
         score < 100 ?
         <CircularProgress variant="determinate" style={style} size={30} thickness={10} value={score} /> :
         <SentimentVerySatisfied
@@ -20,8 +19,8 @@ function StreakIndicator({ score, current }) {
     </Box>;
 }
 
-function Streaks() {
-    return <Container>
+function Streaks({taskHistory}) {
+    return <Container disableGutters>
         <h2>Streak</h2>
 
         <Box width="100%">
